@@ -1,0 +1,15 @@
+@mixin grid($rows, $rowsHeight, $column, $columnWidth  ){
+    display: grid;
+    grid-template: repeat($rows, $rowsHeight) / repeat($column, $columnWidth);
+    grid-gap: 10px;
+}
+@mixin center{
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+@mixin flex($justify-content){
+    display: flex;
+    align-items: center;
+    justify-content: $justify-content;
+}

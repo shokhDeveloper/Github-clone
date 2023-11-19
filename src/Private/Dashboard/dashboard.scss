@@ -1,0 +1,178 @@
+@use "../../Settings/scss/functions.scss";
+.dashboard{
+    position: relative;
+
+}
+.dashboard__inner{
+    display: grid;
+    grid-template: repeat(1, auto) / 23% 50% 30%;
+}
+.dashboard__inner .dashboard__filter{
+    background: #0d1117;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: scroll;
+    &::-webkit-scrollbar{
+        background: transparent;
+    }
+}
+.dashboard__filter .dashboard__search{
+    padding-top: 1rem;
+    @include functions.flex(space-between);
+}
+.dashboard__search button{
+    display: flex;
+    align-items: center;
+    padding: 0.5rem ;
+    border-radius: 10px;
+    background: #088944;
+    color: #fff;    
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 13px;
+}
+.dashboard__search button svg{
+    margin-right: 0.3rem;
+}
+.dashboard__form_box, .dashboard__form_box form, .dashboard__form_box form input{
+    width: 100%;
+}
+.dashboard__list{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-top: 0.5rem;
+}
+.dashboard__list .dashboard__item{
+    width: 100%;
+    @include functions.flex(flex-start);
+}
+.dashboard__list .dashboard__item:hover > p{
+    text-decoration: underline;
+}
+.dashboard__home{
+    border: 1px solid #6e77815e;
+}
+.dashboard__home .dashboard__home_infos{
+    @include functions.flex(space-between);
+}
+.dashboard__home_filter{
+    @include functions.center;
+}
+.dashboard__home_filter a{
+    margin-right: 1rem
+}
+.dashboard__home_filter  button{
+    @include functions.center;
+    padding: 0.5rem ;
+    border: 1px solid #6e77815e !important;
+}
+.dashboard__home_filter  button svg{
+    margin-right: 0.5rem;
+}
+.dashboard__home_filter  button .message__count{
+    margin-left: 0.5rem;    
+    padding: 3px 5px;
+    background: #2d323a;
+    border-radius: 50%;
+}
+.dashboard__inner_list{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.dashboard__inner_list .dashboard__home_item{
+    background: #0d1117;
+    border: 1px solid #6e77815e;
+    border-radius: 10px;
+    margin: 1rem 0rem
+}
+.dashboard__home_item_header{
+    @include functions.flex(space-between);
+    align-items: flex-start;
+}
+.dashboard__home_item{
+    padding:  1rem;
+}
+.dashboard__home_item *{
+    margin: 0;
+    padding: 0;
+}
+.dashboard__home_item_header_child{
+    display: flex;
+    align-items: flex-start;
+}
+.text-box{
+    display: flex;
+}
+.dashboard__home_item_header button{
+    // padding: 0.5 1rem;
+    padding-top: 0;
+    font-size: 20px;
+}
+.dashboard__home_item_body{
+    margin-top: 0.5rem;
+    background: #21262d;
+    padding: 1rem;
+    border-radius: 10px;
+}
+.dashboard__home_item_body{
+    @include functions.flex(space-between);
+    align-items: flex-start;
+}
+
+.dashboard__home_item--btn button{
+    background: transparent;
+}
+.dashboard__home_item--btn button:nth-child(1){
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.dashboard__home_item--btn button:nth-child(2){
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;    
+}
+.dashboard__home_item--child-box{
+    flex-basis: 50%;
+    @include functions.flex(flex-end);
+    position: relative;
+}
+.dashboard__home_btn--bar{
+    position: absolute;
+    left: 0;
+    top: 2.5rem;
+    background: #21262d;
+    z-index: 1;
+    border: 1px solid #6e77815e;
+    border-radius: 10px;
+    // padding: 0.5rem
+}
+.dashboard__home_btn--bar *{
+    color: #fff
+}
+.dashboard__home_btn--bar .bar__header{
+    @include functions.flex(space-between);
+    padding: 0.5rem ;
+    border-bottom: 1px solid #6e77815e;
+}
+.dashboard__home_item--btn button{
+    padding: 0.3rem 1rem;
+    color: #fff;
+    background-position: calc(10%) calc(50%);
+    background-size: 1rem;
+    background-repeat: no-repeat;
+}
+.bar__header button{
+    color: #fff;
+    font-size: 20px;
+}
+.dashboard__home_btn--bar p{
+    line-height: 25px;
+    letter-spacing: 1px;
+    padding: 1rem;
+}
+.dashboard__home_item--btn button:nth-child(1){
+    padding-left: 2rem;
+    padding-top: 0.5rem;
+}

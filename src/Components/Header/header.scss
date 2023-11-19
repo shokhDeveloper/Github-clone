@@ -1,0 +1,68 @@
+@use "../../Settings/scss/functions.scss";
+.site__header{
+    border-bottom: 1px solid #6e77815e;
+}
+.header__inner{
+    @include functions.grid(1, auto, 2, 1fr);
+    padding: 1rem 0rem;
+}
+.header__inner .header__child-box{
+    // border: 1px solid #fff;
+    @include functions.center;    
+}
+.header__inner .header__child-box:nth-child(1) button{
+    margin-right: 0.5rem;
+}
+.header__inner .header__child-box:nth-child(1) a{
+    margin-left: 0.5rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.header__inner .header__child-box:nth-child(2){
+    @include functions.flex(flex-end);
+    // padding: 0.3rem;
+}
+.header__inner .header__child-box:nth-child(2) form{
+    margin-right: 2rem;
+    flex-basis: 60%;
+}
+.header__child-box:nth-child(2) form label{
+    @include functions.flex(space-between);  
+    align-items: center;
+    margin:0rem 1rem;
+    font-size: 20px;
+    border: 1px solid #6e77815e;
+    border-radius: 4px;
+    padding: 0 0.3rem;
+    padding-right: 0;
+    width: 100%;
+}
+.header__child-box:nth-child(2) form label div{
+    @include functions.center;
+    width: 100%;
+}
+.header__inner .header__child-box:nth-child(2) form label input{
+    background: transparent;
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 1px;
+    padding: 0.5rem 1rem;
+    padding-left: 0rem;
+    margin-left: 0.3rem;
+    width: 100%;
+}
+.header__inner .header__child-box:nth-child(2) form label  span{
+    padding: 0.5rem;
+}
+.header__inner .header__child-box:nth-child(2) form label input::placeholder{
+    font-size: 14px;
+    color: #6e7781;
+    letter-spacing: 1px;
+}
+.header__child-box:nth-child(2) .header__elements button:not(:last-child){
+    margin: 0rem 0.3rem;
+    font-size: 20px;
+}
+.header__child-box:nth-child(2) .header__elements{
+    @include functions.center;
+}
