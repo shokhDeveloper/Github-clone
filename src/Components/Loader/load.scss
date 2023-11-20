@@ -1,0 +1,7 @@
+@use "../../Settings/scss/functions.scss";
+.load{
+    background: #0f1114;
+    @include functions.flex(center);
+    align-items: center;
+    min-height: 100vh;
+}

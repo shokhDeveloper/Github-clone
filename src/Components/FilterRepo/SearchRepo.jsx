@@ -2,15 +2,18 @@ import axios from "axios";
 import { useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router";
-import { Avatar, setRepos } from "../../Settings";
+import { Avatar, setRepos, setReposType } from "../../Settings";
 
-export const SearchRepo = ({ reposData, profileData }) => { 
+export const SearchRepo = ({ reposData, profileData, handleGetRepo }) => { 
   const {value} = useParams()
   const dispatch = useDispatch()
   const handleSearchRepo = useCallback(async () => {
-    let rejex = new RegExp(value, "gi")
-    const filter = reposData.filter(item => item.name.match(rejex))
-    dispatch(setRepos(filter))
+    if(value.length){
+      let rejex = new RegExp(value, "gi")
+      const filter = reposData.filter(item => item.name.match(rejex))
+      console.log(filter, reposData)
+      dispatch(setRepos(filter))
+    }
   },[value])
   useEffect(() => {
     handleSearchRepo()

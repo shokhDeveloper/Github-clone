@@ -1,9 +1,15 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Avatar, setRepos } from "../../Settings"
+import { Avatar, setRepos, setReposType } from "../../Settings"
 
-export const DefaultFilter = ({reposData, profileData}) => {
-    return(
+export const DefaultFilter = ({reposData, profileData, handleGetRepo}) => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    // dispatch(setRepos([]))
+    // dispatch(setReposType(false)) 
+    handleGetRepo()
+  },[])  
+  return(
         <ul className="dashboard__list">
       {reposData?.map((item) => {
         return (

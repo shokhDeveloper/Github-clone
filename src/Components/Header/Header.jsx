@@ -1,15 +1,21 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./header.scss";
 import { IoIosSearch } from "react-icons/io";
-import { Button, Link, ProfileBtn } from "../../Settings";
+import { Button, Context, Link, ProfileBtn, setSearchBox } from "../../Settings";
+import { useContext } from "react";
 export const Header = () => {
   const { profileData } = useSelector(({ Reducer }) => Reducer);
+  const {setHomeBar} = useContext(Context);
+  const dispatch = useDispatch()  
+  const handleFocus = () => {
+      dispatch(setSearchBox(true))
+  }
   return (
     <header className="site__header header">
       <div className="container">
         <div className="header__inner">
           <div className="header__child-box">
-            <Button active={true}>
+            <Button active={true} onClick={() => setHomeBar(true)}>
               <svg
                 fill="#ffffff72"
                 aria-hidden="true"
@@ -46,7 +52,7 @@ export const Header = () => {
               <label htmlFor="search">
                 <div>
                 <IoIosSearch color="#6e7781" />
-                <input
+                <input value={null} onFocus={handleFocus}
                   className="border-transparent"
                   id="search"
                   type="text"

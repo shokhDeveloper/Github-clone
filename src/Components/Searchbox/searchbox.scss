@@ -1,0 +1,41 @@
+@use "../../Settings/scss/functions.scss";
+.searchbox__overlay{
+    // @include functions.flex(center);
+    align-items: flex-start;
+    // margin-top: 2rem;
+    flex-direction: column;
+}
+.searchbox__inner{
+    width: 50%;
+    margin: 0 auto;
+}
+.searchbox__inner input{
+    width: 100%;
+    margin-top: 1rem;
+}
+.searchbox__inner_list{
+    width: 100%;
+    background: #0d1117;
+    height: auto;
+    overflow-y: scroll;
+    border-radius: 10px;
+    margin: 0 ;
+    padding: 0;
+    &::-webkit-scrollbar{
+        display: none;
+    }
+    margin-top: 1rem ;
+}
+.searchbox__inner_list li{
+    padding: 0 1rem;
+    @include functions.flex(space-between);
+    margin: 0.5rem 0rem;
+}
+.searchbox__inner_list li:hover{
+    background: #32383f;
+    border-radius: 10px;
+}
+.searchbox__inner_list button{
+    color: crimson;
+    font-size: 20px;
+}

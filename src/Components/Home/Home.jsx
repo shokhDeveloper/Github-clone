@@ -13,6 +13,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { StarBtn } from "../StarBtn";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
   const { followinRandom, followingRepos } = useSelector(
@@ -72,7 +73,6 @@ export const Home = () => {
         {followingRepos?.length ? (
           <ul className="dashboard__inner_list">
             {followingRepos?.map((item) => {
-              console.log(item);
               return (
                 <li className="dashboard__home_item">
                   <div className="dashboard__home_item_header">
@@ -86,7 +86,7 @@ export const Home = () => {
                       </div>
                       <div>
                         <div className="text-box">
-                          <h3>{item.owner.login}</h3>
+                          <Link to={`/user/${item.owner.id}`}>{item.owner.login}</Link>
                           <TextSettings styledType={true}>
                             Followed
                           </TextSettings>

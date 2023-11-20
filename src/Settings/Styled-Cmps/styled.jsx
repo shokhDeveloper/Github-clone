@@ -32,6 +32,24 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0 auto;
         padding: 0 20px;
     }
+    .bar__overlay{
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background: rgba(110,118,129,0.4);
+        z-index: 111111111 !important;        
+    }
+    .overlay{
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.4);
+        z-index: 111111111 !important;
+    }
     /* #24292f */
     /* #32383f */
     /* #0d1117 */
@@ -115,8 +133,12 @@ export const DefaultLink  = styled(NavLink)`
     }
 `
 export const ButtonActive = styled(Button)`
+    padding: 0.5rem 1rem;
+    font-size: 14px;
+    border-radius: 5px;
     background: #20242a;
     color: #fff;
+    opacity: ${({styledTypePagination}) => styledTypePagination ? 0.5: 1};
 `
 export const Avatar = styled.img.attrs({
     

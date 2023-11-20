@@ -1,17 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getItem, setItem } from "../Utils";
+import { getItem, removeItem, setItem } from "../Utils";
 const initialState = {
   profileData: [],
   reposData: [],
   reposType: false,
   followinRandom: [],
   followingRepos: [],
-  starReposAndProfile: getItem("starReposAndUser") ? JSON.parse(getItem("starReposAndUser")) : []
+  starReposAndProfile: getItem("starReposAndUser") ? JSON.parse(getItem("starReposAndUser")) : [],
+  searchbox: false,
+  searchData: [],
+  loader: getItem("loader") ? false : true
 };
 export const slice = createSlice({
   name: "git-hub-clone",
   initialState,
   reducers: {
+    setOpenLoader(state){
+      state.loader = true
+      removeItem("loader")
+    },
+    setCloseLoader(state){
+      state.loader = false 
+      setItem("loader", "loader-end")
+    },
     setProfileData(state, action) {
       state.profileData = action.payload;
     },
@@ -69,6 +80,12 @@ export const slice = createSlice({
         }catch(error){
             return error
         }
+    },
+    setSearchBox(state, action){
+      state.searchbox = action.payload
+    },
+    setSearchData(state, action){
+      state.searchData = action.payload
     }
   },
 });
@@ -80,5 +97,9 @@ export const {
   setFollowingRandom,
   setFollowingRepos,
   setStar,
-  setBackStar
+  setBackStar,
+  setSearchBox,
+  setSearchData,
+  setCloseLoader,
+  setOpenLoader
 } = slice.actions;

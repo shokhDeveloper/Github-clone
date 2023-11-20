@@ -1,0 +1,64 @@
+@use "../../Settings/scss/functions.scss";
+.home__bar{
+    border-top-right-radius: 15px;
+    transition: 0.5s ease all;
+    transform: translateX(-100%);
+    position: relative;
+}
+.home_bar__header{
+    padding: 0.7rem 0;
+    @include functions.flex(space-between);
+}
+.home_bar__header button{
+    background: transparent;
+    font-size: 25px;
+    padding: 0.2rem 0.7rem;
+}
+.home_bar__list{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-bottom: 1px solid #6e778145;
+}
+.home_bar__list li:not(:first-child){
+    width: 100%;
+    margin: 0.2rem 0rem;
+}
+.home_bar__list li{
+    border-radius: 10px;
+    padding: 0.3rem 0.4rem ;
+}
+.home_bar__list li a{
+    width: 100%;
+    text-decoration: none;
+    color: #fff;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+}
+.home_bar__list li a svg{
+    margin-right: 0.5rem;
+}
+.home_bar__list li:hover{
+    background: rgba(110, 118, 129, 0.24);
+}
+.home_bar__list:nth-child(2){
+    margin-top: 0.5rem;
+}
+.site__bar--active{
+    transform: translateX(0);
+}
+.home_bar__bottom{
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+}
+.home_bar__bottom a{
+    font-size: 14px;
+}
+.home_bar__bottom p{
+    color: #6e7781b1;
+}
+.home_bar__bottom a:not(:first-child){
+   padding-right: 0.5rem;
+}

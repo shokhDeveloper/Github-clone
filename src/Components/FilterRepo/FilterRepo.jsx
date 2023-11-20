@@ -1,38 +1,80 @@
-import { useCallback, useEffect } from "react";
-import { ErrorBox, ErrorTitle, Input, LoadTitle, LoadingBox, setRepos, setReposType } from "../../Settings";
+import { useCallback, useContext, useEffect, useRef } from "react";
+import {  ButtonActive, Context, Input, LoadTitle, LoadingBox, setRepos, setReposType } from "../../Settings";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { Link, Route, Routes, useNavigate } from "react-router-dom";
+import {  Route, Routes, useNavigate } from "react-router-dom";
 import { SearchRepo } from "./SearchRepo";
 import { DefaultFilter } from "./DefaultFilter";
 
 export const FilterRepo = () => {
   const { reposData, profileData, reposType } = useSelector(({ Reducer }) => Reducer);
+  const {disabled, setDisabled, page, maxPage, setPage} = useContext(Context)
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const prevRef = useRef();
+  const nextRef = useRef();
   const handleGetRepo = useCallback(async () => {
     try {
       if (!reposData.length && !reposType ) {
         const request = await axios.get(
-          process.env.REACT_APP_BASE_URL + "/users/shokhDeveloper/repos"
-        );
+          process.env.REACT_APP_BASE_URL + "/users/ShokhDeveloper/repos",
+         {
+          params:{
+            page
+          }
+        });
         if (request.status === 200) {
           const response = await request.data;
           dispatch(setRepos(response));
+          dispatch(setReposType(true))
         }
       }
     } catch (error) {
       return error;
     }
-  }, [reposData]);
+  }, [reposData, page, reposType]);
   const handleKey = (event) => {
     if(event.target.value.length){
         navigate(`/search-repositories/${event.target.value}`)
     }else{
         dispatch(setRepos([]))
+        dispatch(setReposType(false))
         navigate("/")
     }
   }
+  const handlePagination = (event) => {
+    switch(event.target.id){
+      case "next":{
+        if(page < maxPage){
+          console.log(page)
+          setPage(page => page+=1)
+          dispatch(setReposType(false))
+          dispatch(setRepos([]))
+        }else{
+          dispatch(setReposType(false))
+          dispatch(setRepos([]))
+        }
+      }break;
+      case "prev":{
+        if(page > 1){
+          setPage((page) => page-=1)
+          dispatch(setReposType(false))
+          dispatch(setRepos([]))
+        }else{
+          dispatch(setReposType(false))
+          dispatch(setRepos([]))
+        }
+      }break;
+      default: return false
+    }
+  }
+  useEffect(() => {
+    if(page === maxPage){
+      setDisabled("next")
+    }else if(page === 1){
+        setDisabled("prev")
+    }
+  },[page])
   useEffect(() => {
     handleGetRepo();
   }, [handleGetRepo]);
@@ -69,8 +111,8 @@ export const FilterRepo = () => {
         {reposData?.length ? (
           <>
             <Routes>
-                <Route path="/search-repositories/:value" element={<SearchRepo reposData={reposData} profileData={profileData}/>}/>
-                <Route path="/" element={<DefaultFilter reposData={reposData} profileData={profileData}/>}/>
+                <Route path="/search-repositories/:value" element={<SearchRepo handleGetRepo={handleGetRepo} reposData={reposData} profileData={profileData}/>}/>
+                <Route path="/" element={<DefaultFilter reposData={reposData} handleGetRepo={handleGetRepo} profileData={profileData}/>}/>
             </Routes>
           </>
         ) : (
@@ -78,7 +120,15 @@ export const FilterRepo = () => {
             <LoadTitle>Yuklanmoqda ...</LoadTitle>
           </LoadingBox>
         )}
+      <div className="dashboard__filter_pagination">
+          <ButtonActive ref={prevRef} onClick={handlePagination} id="prev" styledTypePagination={disabled === "prev" ? true: false} disabled={disabled === "prev" ? true: false}>
+            Previous
+          </ButtonActive>
+          <h2>{page}</h2>
+          <ButtonActive ref={nextRef} onClick={handlePagination} styledTypePagination={disabled === "next" ? true: false} id="next" className="border-transparent" disabled={disabled === "next" ? true: false}>Next</ButtonActive>
       </div>
+      </div>
+
     </div>
   );
 };
