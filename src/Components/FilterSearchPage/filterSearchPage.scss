@@ -1,0 +1,55 @@
+.filterPage{
+    background: #0d1117;
+    min-height: 90.5vh;
+}
+.filterPage *{
+    margin: 0;
+    padding: 0;
+}
+.filterPage__inner{
+    display: grid;
+    grid-template: repeat(1, auto) / 20% 80%;
+    margin-right: 1rem;
+}
+.filterPage__bar{
+    padding: 1rem 0rem;
+}
+.filterPage__bar h3{
+    font-size: 20px; 
+}
+.filterPage__bar ul{
+    list-style: none;
+    width: 100%;
+}
+.filterPage__bar ul li{
+    width: 100%;
+    padding: 0.3rem;
+    margin: 0.3rem 0rem;
+    border-radius: 10px;
+}
+.filterPage__bar ul li .link{
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+}
+.filterPage__bar ul li .link svg{
+    margin-right: 0.5rem;
+}
+.filterPage__bar ul li:hover{
+    background: #6e76813d;
+}
+.active__link{
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+}
+.active__link::before{
+    content: " ";
+    display: inline-block;
+    background: red;
+    width: 4px;
+    height: 100%;
+
+}

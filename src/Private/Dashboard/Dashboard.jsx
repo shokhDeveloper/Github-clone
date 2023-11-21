@@ -1,5 +1,5 @@
 import "./dashboard.scss";
-import { FilterRepo, Home } from "../../Components";
+import { FilterRepo, Home, Latest } from "../../Components";
 
 export const Dashboard = () => {
   return (
@@ -7,6 +7,7 @@ export const Dashboard = () => {
       <div className="dashboard__inner">
         <FilterRepo />
         <Home/>
+        <Latest/>
       </div>
     </section>
   );

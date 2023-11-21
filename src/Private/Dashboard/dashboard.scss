@@ -5,7 +5,7 @@
 }
 .dashboard__inner{
     display: grid;
-    grid-template: repeat(1, auto) / 23% 50% 30%;
+    grid-template: repeat(1, auto) / 23% 50% 27%;
 }
 .dashboard__inner .dashboard__filter{
     background: #0d1117;
@@ -50,9 +50,6 @@
 }
 .dashboard__list .dashboard__item:hover > p{
     text-decoration: underline;
-}
-.dashboard__home{
-    border: 1px solid #6e77815e;
 }
 .dashboard__home .dashboard__home_infos{
     @include functions.flex(space-between);
@@ -203,4 +200,98 @@
     left: 0;
     min-height: 100vh;
     background: #161b22;   
+}
+.dashboard_latest__inner{
+    margin-top: 1rem;
+}
+.dashboard_latest__item{
+    padding: 1rem;
+    background: #0d1117;
+    border-radius: 10px;
+    border: 1px solid #6e77815e;
+}
+.dashboard_latest__item *{
+    margin: 0;
+    padding: 0;
+}
+.dashboard_latest__item .dashboard_latest__title{
+    // letter-spacing: 1px;
+    font-weight: 500;
+    font-size: 14px;
+}
+.dashboard_latest__item .dashboard_latest_item__list{
+    margin: 0;
+    padding: 0;
+    list-style:  none;
+    border-left: 1px solid #6e77815e;
+    padding-left: 1rem;
+}
+.dashboard_latest__item .dashboard_latest_item__list *{
+    margin: 0;
+    padding: 0.3rem 0rem;
+}
+.dashboard_latest__item .dashboard_latest__inner_box{
+    display: flex;
+    align-items: stretch;
+    padding: 0.5rem;
+    position: relative;
+}
+.dashboard_latest__inner_box  svg:nth-child(1){
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.dashboard_latest__inner_box  svg:last-child{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.dashboard_latest__item:nth-child(2){
+   margin-top: 2rem;
+}
+.repo__bottom img{
+    filter: invert(0.5);
+}
+.repo__inner{
+    @include functions.flex(space-between);
+    align-items: flex-start;
+}
+.repo__inner div:nth-child(1){
+    @include functions.center;
+    text-align: start;
+    justify-content: start;
+}
+.dashboard_latest_item__repo{
+    margin: 1rem 0rem;
+}
+.repo__bottom{
+    @include functions.flex(space-between);
+    margin: 1rem 0rem;
+}
+.repo__bottom .repo_bottom__star{
+    @include functions.center;
+}
+.repo__bottom .language{
+    padding: 0.4rem;
+    border-radius: 10px;
+}
+.repo__bottom .JavaScript {
+    background: yellow;
+    color: black;
+}
+.repo__bottom .C, .repo__bottom .Typescript, .repo__bottom .C, .repo__bottom .CSS {
+    background: #1078e6;
+    color: #fff;
+}
+.repo__bottom .SCSS {
+    background: rgb(213, 104, 204);
+    color: #fff;
+}
+.repo__bottom .SCSS {
+    background: rgb(193, 88, 246);
+    color: #fff;
+}
+.repo__bottom .HTML {
+    background: rgb(227, 105, 18);
+    color: #fff;
 }

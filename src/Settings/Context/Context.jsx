@@ -7,8 +7,9 @@ export const ContextProvider = ({children}) => {
     const [disabled, setDisabled] = useState(false)
     const [maxPage, setMaxPage] = useState(0)
     const [homeBar, setHomeBar] = useState(false)
+    const [profileBarActive, setProfileBarActive] = useState(false)
     return(
-        <Context.Provider value={{starRepos, setStarRepos, page, setPage, disabled, setDisabled, maxPage, setMaxPage, homeBar, setHomeBar}}>
+        <Context.Provider value={{starRepos, setStarRepos, page, setPage, disabled, setDisabled, maxPage, setMaxPage, homeBar, setHomeBar, profileBarActive, setProfileBarActive}}>
             {children}
         </Context.Provider>
     )

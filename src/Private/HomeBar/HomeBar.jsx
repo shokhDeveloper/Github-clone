@@ -20,7 +20,7 @@ export const HomeBar = () => {
     }else{
         setTimeout(() => {
             setHomeBarActive(false)
-        }, 1000)        
+        }, 200)        
     }
   }
   const handleClick = (event) => {

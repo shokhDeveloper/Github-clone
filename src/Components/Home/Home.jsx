@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { StarBtn } from "../StarBtn";
 import { Link } from "react-router-dom";
+import { Footer } from "../Footer";
 
 export const Home = () => {
   const { followinRandom, followingRepos } = useSelector(
@@ -126,7 +127,7 @@ export const Home = () => {
                       <h4>{item.name}</h4>
                     </div>
                     <div className="dashboard__home_item--child-box">
-                      <StarBtn repo={item}/>
+                      <StarBtn active={false} repo={item}/>
                     </div>
                   </div>
                 </li>
@@ -139,6 +140,7 @@ export const Home = () => {
           </LoadingBox>
         )}
       </div>
+      <Footer/>
     </div>
   );
 };

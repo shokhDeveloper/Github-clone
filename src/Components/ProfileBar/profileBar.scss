@@ -1,0 +1,71 @@
+@use "../../Settings/scss/functions.scss";
+.profileBar__overlay{
+    @include functions.flex(flex-end);
+}
+.profileBar{
+    width: 21%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    background: #161b22;   
+    transition: 0.5s ease all !important;
+    transform: translateX(100%);
+    border-top-left-radius: 10px;
+}
+.profileBar__active{
+    transform: translateX(0%) !important;
+}
+.profileBar .profileBar__top *{
+    margin: 0;
+    padding: 0;
+}
+.profileBar__top{
+    @include functions.flex(space-between);
+    padding: 1rem 0rem;
+}
+.profileBar__top div:nth-child(1){
+    display: flex;
+    align-items: center;
+}
+.profileBar__top div:nth-child(1) div{
+    margin-left: 1rem;
+}
+.profileBar__top button{
+    padding: 0.3rem 0.5rem !important;
+    font-size: 20px;
+}
+.profileBar__body{
+    height: 90vh;
+    overflow-y: scroll;
+    &::-webkit-scrollbar{
+        background: transparent;
+    }
+}
+.profileBar__body .profileBar__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+    border-bottom: 1px solid #6e77815e;
+}
+.profileBar__list li{
+    margin: 0.3rem 0;
+    padding: 0.4rem;
+    width: 100%;
+    border-radius: 10px;
+}
+.profileBar__list li a{
+    text-decoration: none;
+    color: #fff;
+    width: 100%;
+}
+.profileBar__list li:hover{
+    background: #6e76813d;
+}
+.profileBar__list li a svg{
+    margin-right: 0.4rem;
+}
+.profileBar__list:last-child{
+    margin-top: 1rem;
+}

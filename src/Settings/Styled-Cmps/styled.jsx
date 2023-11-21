@@ -151,3 +151,12 @@ export const TextSettings = styled.p`
     font-size: ${({styledType}) => styledType ? "0.9rem": "0.8rem"};
     margin: 0rem 0.5rem;
 `
+export const LinkActive = styled(NavLink)`
+    font-size: 14px;
+    color:${({styledType}) => styledType ? "#fff" : "#6e7781"};
+    text-decoration: none;
+    &:hover{
+        color: #1078e6;
+        text-decoration: underline;
+    }
+`

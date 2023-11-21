@@ -9,7 +9,9 @@ const initialState = {
   starReposAndProfile: getItem("starReposAndUser") ? JSON.parse(getItem("starReposAndUser")) : [],
   searchbox: false,
   searchData: [],
-  loader: getItem("loader") ? false : true
+  loader: getItem("loader") ? false : true,
+  profileBar: false,
+  filterData: []
 };
 export const slice = createSlice({
   name: "git-hub-clone",
@@ -86,6 +88,12 @@ export const slice = createSlice({
     },
     setSearchData(state, action){
       state.searchData = action.payload
+    },
+    setProfileBar(state, action){
+      state.profileBar = action.payload
+    },
+    setFilterData(state, action){
+      state.filterData = action.payload
     }
   },
 });
@@ -101,5 +109,7 @@ export const {
   setSearchBox,
   setSearchData,
   setCloseLoader,
-  setOpenLoader
+  setOpenLoader,
+  setProfileBar,
+  setFilterData
 } = slice.actions;

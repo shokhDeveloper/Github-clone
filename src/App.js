@@ -5,13 +5,13 @@ import {
   setFollowingRandom,
   setProfileData,
 } from "./Settings";
-import { Header, Loader, SearchBox } from "./Components";
+import { FilterSearchPage, Header, Loader, ProfileBar, SearchBox } from "./Components";
 import { useCallback, useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { Dashboard, HomeBar } from "./Private";
 function App() {
-  const { profileData, searchbox, loader } = useSelector(
+  const { profileData, searchbox, loader, profileBar } = useSelector(
     ({ Reducer }) => Reducer
   );
   const { setMaxPage, homeBar } = useContext(Context);
@@ -82,9 +82,10 @@ function App() {
           ): null}
           <Routes>
             <Route path="/*" element={<Dashboard />} />
-            <Route path="/user/:id" element={<h1>Hello world</h1>} />
+            <Route path="/filter/:value/*" element={<FilterSearchPage/>} /> 
           </Routes>
           {searchbox ? <SearchBox /> : null}
+            <ProfileBar profileBar={profileBar}/>
         </>
       )}
       <GlobalStyle />

@@ -1,0 +1,27 @@
+@use "../../Settings/scss/functions.scss";
+.site__footer{
+    margin-top: 2rem;
+}
+.site_footer__inner{
+    @include functions.grid(1, auto, 4, 1fr);
+    align-items: flex-start;
+}
+.site_footer__item ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.site_footer__item .site_footer__info{
+    @include functions.center;
+}
+.site_footer__info p{
+    color: #6e7781;
+    margin-left: 0.5rem;
+}
+.site_footer__item:not(:first-child){
+    @include functions.flex(flex-end);
+    align-items: flex-start;
+}
+.site_footer__item ul li{
+    margin: 0.5rem 0rem;
+}

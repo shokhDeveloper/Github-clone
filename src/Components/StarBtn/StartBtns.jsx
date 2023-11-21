@@ -3,7 +3,7 @@ import { Button, Context, setBackStar, setStar } from "../../Settings";
 import { useDispatch, useSelector } from "react-redux";
 import STARWHITE from "../../assets/images/STAR-WHITE.png"
 import STAR from "../../assets/images/STAR.png"
-export const StarBtn = ({ repo }) => {
+export const StarBtn = ({ repo , active}) => {
   const { starReposAndProfile } = useSelector(({ Reducer }) => Reducer);
   const dispatch = useDispatch();
   const handleIncludeRepos = () => {
@@ -27,9 +27,10 @@ export const StarBtn = ({ repo }) => {
   }, [repo.id]);
   return (
     <div className="dashboard__home_item--btn">
-      <Button className="star__btn" active={true} onClick={handleAddRepos} style={{backgroundImage: handleIncludeRepos() ? `url(${STAR})` : `url(${STARWHITE})`}}>
+      <Button className="star__btn" active={true} onClick={handleAddRepos} style={{backgroundImage: handleIncludeRepos() ? `url(${STAR})` : `url(${STARWHITE})`, borderRadius: active && "10px"}}>
         Star
       </Button>
+      {!active ? (
       <Button
         active={true}
         onClick={(event) => {
@@ -76,6 +77,7 @@ export const StarBtn = ({ repo }) => {
           </div>
         </details>
       </Button>
+      ): null}
     </div>
   );
 };

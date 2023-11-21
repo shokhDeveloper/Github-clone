@@ -4,3 +4,7 @@ export * from "./Home";
 export * from "./StarBtn";
 export * from "./Searchbox";
 export * from "./Loader";
+export * from "./Footer";
+export * from "./Latest";
+export * from "./ProfileBar";
+export * from "./FilterSearchPage";

@@ -1,5 +1,5 @@
 import "./searchbox.scss";
-import { Button, Input, setSearchBox, setSearchData } from "../../Settings";
+import { Button, Input, setFilterData, setSearchBox, setSearchData } from "../../Settings";
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useEffect } from "react";
 import axios from "axios";
@@ -35,18 +35,9 @@ export const SearchBox = () => {
         let filter = searchData.filter(item => item.name.match(rejex))
         dispatch(setSearchData(filter))
         if(event.keyCode === 13){
-            try{
-                const request = await axios.get(process.env.REACT_APP_BASE_URL + `/users/${event.target.value}`).catch(error => console.log(error))
-                if(request.status === 200){
-                    const response = await request.data
-                    if(response?.id){
-                        navigate(`/user/${response.id}`)
-                        dispatch(setSearchBox(false))
-                    }
-                }
-            }catch(error){
-                return error
-            }
+          navigate(`/filter/${event.target.value}`)   
+          event.target.value = null
+          dispatch(setSearchBox(false))
         }
     }else{
         dispatch(setSearchData([]))

@@ -113,6 +113,7 @@ export const FilterRepo = () => {
             <Routes>
                 <Route path="/search-repositories/:value" element={<SearchRepo handleGetRepo={handleGetRepo} reposData={reposData} profileData={profileData}/>}/>
                 <Route path="/" element={<DefaultFilter reposData={reposData} handleGetRepo={handleGetRepo} profileData={profileData}/>}/>
+                <Route path="/*" element={<DefaultFilter reposData={reposData} handleGetRepo={handleGetRepo} profileData={profileData}/>}/>
             </Routes>
           </>
         ) : (
