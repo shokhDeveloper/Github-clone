@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const Context = createContext()
 export const ContextProvider = ({children}) => {
@@ -9,6 +9,7 @@ export const ContextProvider = ({children}) => {
     const [homeBar, setHomeBar] = useState(false)
     const [profileBarActive, setProfileBarActive] = useState(false)
     const [filterAllData, setFilterAllData] = useState([])
+
     return(
         <Context.Provider value={{starRepos, setStarRepos, page, setPage, disabled, setDisabled, maxPage, setMaxPage, homeBar, setHomeBar, profileBarActive, setProfileBarActive, filterAllData, setFilterAllData}}>
             {children}

@@ -8,3 +8,4 @@ export * from "./Footer";
 export * from "./Latest";
 export * from "./ProfileBar";
 export * from "./FilterSearchPage";
+export * from "./ErrorPage";

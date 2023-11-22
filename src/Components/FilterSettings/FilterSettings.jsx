@@ -1,26 +1,27 @@
-import { useSelector } from "react-redux";
-import { Button } from "../../Settings";
+import { useDispatch, useSelector } from "react-redux";
+import { Button, Context, setFilter } from "../../Settings";
 import { RenderUsers } from "../RenderUser";
+import { useContext, useEffect } from "react";
 
 export const FilterSettings = ({ count }) => {
   const {filterData} = useSelector(({Reducer}) => Reducer)
+  const dispatch = useDispatch()
   const handleFilter = (event) => {
     let parent = event.target.parentNode.parentNode.parentNode.parentNode;
     switch (event.target.id) {
       case "name":
         {
           parent.open = false;
+          dispatch(setFilter("name"))
         }
         break;
-      case "date":
-        {
-          parent.open = false;
-        }
-        break;
-      default:
+        default:
         return false;
     }
   };
+  useEffect(() => {
+    console.log(filterData)
+  },[filterData])
   return (
     <div className="filter__settings">
       <div className="container__fluid">
@@ -65,17 +66,6 @@ export const FilterSettings = ({ count }) => {
                           value={"name"}
                           type="radio"
                           id="name"
-                        />
-                      </label>
-                      <label htmlFor="date">
-                        <p>Sort by date</p>
-                        <input
-                          onChange={handleFilter}
-                          name="filter"
-                          className="visually-hidden"
-                          value={"date"}
-                          type="radio"
-                          id="date"
                         />
                       </label>
                     </form>

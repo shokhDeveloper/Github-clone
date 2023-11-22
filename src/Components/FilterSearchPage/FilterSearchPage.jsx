@@ -2,7 +2,7 @@ import "./filterSearchPage.scss";
 import axios from "axios";
 import { useCallback, useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Routes, useParams } from "react-router";
+import { Route, Routes, useNavigate, useParams } from "react-router";
 import { Context, LoadTitle, LoadingBox, setFilterData } from "../../Settings";
 import { NavLink } from "react-router-dom";
 import { PiUsersThin } from "react-icons/pi";
@@ -12,16 +12,24 @@ import { FilterUser } from "../FilterUser";
 import { Latest } from "../Latest";
 
 export const FilterSearchPage = () => {
-  const { filterData } = useSelector(({ Reducer }) => Reducer);
+  const { filterData, filterPage } = useSelector(({ Reducer }) => Reducer);
   const {filterAllData, setFilterAllData} = useContext(Context)
   const dispatch = useDispatch();
   const { value } = useParams();
+  const navigate = useNavigate()
   const handleGetSearchResult = useCallback(async () => {
     if (!filterData?.length) {
       try {
         const request = await axios
-          .get(process.env.REACT_APP_BASE_URL + `/search/users?q=${value}`)
-          .catch((error) => console.log(error));
+          .get(process.env.REACT_APP_BASE_URL + `/search/users?q=${value}`, {
+            params:{
+              page: filterPage
+            }
+          })
+          .catch((error) => {
+            navigate("/not-found")
+            return error
+          });
         if (request.status === 200) {
           const response = await request.data;
           setFilterAllData(response)
@@ -33,7 +41,7 @@ export const FilterSearchPage = () => {
     } else {
       return false;
     }
-  }, [value, filterData]);
+  }, [value, filterData, filterPage]);
   const handleResultCount = () => {
     return filterAllData?.total_count?.toString().length === 4 ? filterAllData?.total_count?.toString()?.substring(0, 1).concat(".k"):  filterAllData?.total_count?.toString().length === 5 ? filterAllData?.total_count?.toString().substring(0,3).concat(".k"):  filterAllData?.total_count?.toString().length === 6 ? filterAllData?.total_count.toString().substring(0, 3).concat(".k") : filterAllData?.total_count?.toString().length === 9 ? filterAllData?.total_count?.toString().substring(0,3).concat(".m"): filterAllData.total_count
   }
@@ -69,6 +77,7 @@ export const FilterSearchPage = () => {
             <div className="filter__result">
               <div className="container__fluid">
               <Routes>
+                <Route index element={<FilterSettings/>}/>
                 <Route path={`settings-by-filter`} element={<FilterSettings count={handleResultCount()}/>}/>
                 <Route path={`users`} element={<FilterUser/>}/>
               </Routes>

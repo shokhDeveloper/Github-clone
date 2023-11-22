@@ -132,6 +132,10 @@ export const ErrorTitle = styled.h3`
 `
 export const LoadingBox = styled.div`
     width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
 `
 export const LoadTitle = styled.h3`

@@ -1,0 +1,24 @@
+.filter__user{
+    margin-top: 1rem;
+    border-radius: 10px;
+    border: 1px solid #6e77815e;
+    padding: 1rem;
+}
+.filter_user__top{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.filter_user__data{
+    display: flex;
+    align-items: stretch;
+}
+.pagination{
+    width: 50%;
+    margin: 2rem auto;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}

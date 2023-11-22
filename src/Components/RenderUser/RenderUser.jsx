@@ -1,17 +1,63 @@
-import { useEffect, useState } from "react";
+import "./renderuser.scss";
+import { useContext, useEffect, useState } from "react";
 import ContentLoader from "react-content-loader";
-import { Avatar } from "../../Settings";
+import {
+  Avatar,
+  Button,
+  ButtonActive,
+  Context,
+  LinkActive,
+  LoadTitle,
+  setFilterData,
+  setMaxFilterPage,
+  setPageDec,
+  setPageInc,
+} from "../../Settings";
 import { StarBtn } from "../StarBtn";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 export const RenderUsers = ({ users }) => {
+  const { filterPage, maxFilterPage } = useSelector(({ Reducer }) => Reducer);
+  const { filterAllData } = useContext(Context);
   const [dataUsers, setDataUsers] = useState([]);
+  const [disabled, setDisabled] = useState("prev");
+  const dispatch = useDispatch();
   useEffect(() => {
     if (users?.length) {
       setTimeout(() => {
         setDataUsers(users);
-      }, 3000);
+      }, 1000);
     }
   }, [users]);
+  const handlePagination = (event) => {
+    switch (event.target.id) {
+      case "next": {
+        setDisabled(null)
+        dispatch(setPageInc(1));
+        dispatch(setFilterData([]))
+      }break;
+      case "prev":{
+        setDisabled(null)
+        dispatch(setPageDec(1))
+        dispatch(setFilterData([]))
+      }
+    }
+  };
+  useEffect(() => {
+    console.log(maxFilterPage);
+    if(filterPage === maxFilterPage){
+      setDisabled("next")
+    }else if(filterPage === 1){
+      setDisabled("prev")
+    
+    }
+  }, [maxFilterPage, filterPage, filterAllData]);
+  useEffect(() => {
+    if (filterAllData?.total_count) {
+      let max = Math.ceil(filterAllData?.total_count / 30)
+      dispatch(setMaxFilterPage(max))
+    }
+  }, [filterAllData]);
   return (
     <div className="filter__render_user">
       {dataUsers?.length
@@ -21,8 +67,13 @@ export const RenderUsers = ({ users }) => {
                 <div className="filter__user">
                   <div className="filter_user__top">
                     <div className="filter_user__data">
-                    <Avatar width={30} height={30} src={item.avatar_url} />
-                    <p>{item.login}</p>
+                      <Avatar width={30} height={30} src={item.avatar_url} />
+                      <LinkActive
+                        styledType={"white"}
+                        to={`/user/${item.login}`}
+                      >
+                        {item.login}
+                      </LinkActive>
                     </div>
                     <StarBtn active={true} repo={item}></StarBtn>
                   </div>
@@ -53,6 +104,27 @@ export const RenderUsers = ({ users }) => {
               );
             });
           })()}
+      {dataUsers?.length ? (
+        <div className="pagination">
+          <ButtonActive
+            onClick={handlePagination}
+            styledTypePagination={disabled === "prev" ? true : false}
+            disabled={disabled === "prev" ? true : false}
+            id="prev"
+          >
+            Previous
+          </ButtonActive>
+          <LoadTitle>{filterPage}</LoadTitle>
+          <ButtonActive
+            onClick={handlePagination}
+            styledTypePagination={disabled === "next" ? true : false}
+            disabled={disabled === "next" ? true : false}
+            id="next"
+          >
+            Next
+          </ButtonActive>
+        </div>
+      ) : null}
     </div>
   );
 };

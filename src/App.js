@@ -6,7 +6,7 @@ import {
   setFollowingRepos,
   setProfileData,
 } from "./Settings";
-import { FilterSearchPage, Header, Loader, ProfileBar, SearchBox } from "./Components";
+import { ErrorPage, FilterSearchPage, Header, Loader, ProfileBar, SearchBox } from "./Components";
 import { useCallback, useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -114,6 +114,7 @@ function App() {
           <Routes>
             <Route path="/*" element={<Dashboard />} />
             <Route path="/filter/:value/*" element={<FilterSearchPage/>} /> 
+            <Route path="/not-found" element={<ErrorPage/>}/>
           </Routes>
           {searchbox ? <SearchBox /> : null}
             <ProfileBar profileBar={profileBar}/>

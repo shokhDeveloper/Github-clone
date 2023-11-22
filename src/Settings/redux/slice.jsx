@@ -11,7 +11,9 @@ const initialState = {
   searchData: [],
   loader: getItem("loader") ? false : true,
   profileBar: false,
-  filterData: []
+  filterData: [],
+  maxFilterPage: 0,
+  filterPage: 1
 };
 export const slice = createSlice({
   name: "git-hub-clone",
@@ -44,7 +46,6 @@ export const slice = createSlice({
           }
         });
       }
-      console.log(result)
       state.followinRandom = result;
     },
     setFollowingRepos(state, action) {
@@ -94,6 +95,35 @@ export const slice = createSlice({
     },
     setFilterData(state, action){
       state.filterData = action.payload
+    },
+    setMaxFilterPage(state, action){
+      state.maxFilterPage = action.payload
+    },
+    setPageInc(state, action){
+      if(state.maxFilterPage){
+        if(state.maxFilterPage > state.filterPage){
+          state.filterPage += action.payload
+        }
+      }
+    },
+    setPageDec(state, action){
+      if(state.filterPage >= 1){
+        state.filterPage -= action.payload
+      }
+    },
+    setFilter(state, action){
+      if(action.payload === "name"){
+        let filterJSON = JSON.stringify(state.filterData)
+        let result = JSON.parse(filterJSON)
+        const sort = result.sort((a,b) => {
+          if(a.login < b.login){
+            return -1
+          }else{
+            return 1
+          }
+        })
+        state.filterData = sort
+      }
     }
   },
 });
@@ -111,5 +141,9 @@ export const {
   setCloseLoader,
   setOpenLoader,
   setProfileBar,
-  setFilterData
+  setFilterData,
+  setMaxFilterPage,
+  setPageInc,
+  setPageDec,
+  setFilter
 } = slice.actions;
