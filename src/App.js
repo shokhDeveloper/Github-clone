@@ -3,6 +3,7 @@ import {
   Context,
   GlobalStyle,
   setFollowingRandom,
+  setFollowingRepos,
   setProfileData,
 } from "./Settings";
 import { FilterSearchPage, Header, Loader, ProfileBar, SearchBox } from "./Components";
@@ -11,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { Dashboard, HomeBar } from "./Private";
 function App() {
-  const { profileData, searchbox, loader, profileBar } = useSelector(
+  const { profileData, searchbox, loader, profileBar, followinRandom } = useSelector(
     ({ Reducer }) => Reducer
   );
   const { setMaxPage, homeBar } = useContext(Context);
@@ -70,6 +71,36 @@ function App() {
       })
       .catch((error) => console.log(error));
   }, []);
+  let result = []
+  const handleGetRepo = useCallback(async () => {
+    if (followinRandom.length) {
+      Promise.all(
+        followinRandom?.map((item) => {
+          return axios
+            .get(process.env.REACT_APP_BASE_URL + `/users/${item}/repos`)
+            .then((response) => {
+              if (response?.data?.length) {
+                return response.data;
+              }
+            });
+        })
+      ).then((response) => {
+        response.map((item) => {
+          let repo = item.slice(item.length - 1);
+          result = [...result, ...repo];
+          dispatch(setFollowingRepos(result));
+        });
+      });
+    }
+  }, [followinRandom]);
+  useEffect(() => {
+    handleGetRepo();
+  }, [handleGetRepo]);
+  useEffect(() => {
+    axios.get("https://api.github.com/users/matheuscainelli42").then(response => {
+      console.log(response.data)
+    })
+  },[])
   return (
     <>
       {loader ? (

@@ -152,7 +152,6 @@ export const Latest = () => {
                 Explore repositories
             </h4>
             {repos.slice(0, 4)?.map(item => {
-                console.log(item)
                 return(
                     <div className="dashboard_latest_item__repo repo">
                         <div className="repo__inner">

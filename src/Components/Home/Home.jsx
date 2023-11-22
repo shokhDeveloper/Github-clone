@@ -20,32 +20,7 @@ export const Home = () => {
   const { followinRandom, followingRepos } = useSelector(
     ({ Reducer }) => Reducer
   );
-  const dispatch = useDispatch();
-  let result = [];
-  const handleGetRepo = useCallback(async () => {
-    if (followinRandom.length) {
-      Promise.all(
-        followinRandom?.map((item) => {
-          return axios
-            .get(process.env.REACT_APP_BASE_URL + `/users/${item}/repos`)
-            .then((response) => {
-              if (response?.data?.length) {
-                return response.data;
-              }
-            });
-        })
-      ).then((response) => {
-        response.map((item) => {
-          let repo = item.slice(item.length - 1);
-          result = [...result, ...repo];
-          dispatch(setFollowingRepos(result));
-        });
-      });
-    }
-  }, [followinRandom]);
-  useEffect(() => {
-    handleGetRepo();
-  }, [handleGetRepo]);
+  
   return (
     <div className="dashboard__home">
       <div className="container__fluid">
