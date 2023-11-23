@@ -3,7 +3,7 @@ import axios from "axios";
 import { useCallback, useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes, useNavigate, useParams } from "react-router";
-import { Context, LoadTitle, LoadingBox, setFilterData } from "../../Settings";
+import { Context, LoadTitle, LoadingBox, setErrorSearch, setFilterData, setFilterResultCount, useBack } from "../../Settings";
 import { NavLink } from "react-router-dom";
 import { PiUsersThin } from "react-icons/pi";
 import { CiSettings } from "react-icons/ci";
@@ -12,11 +12,12 @@ import { FilterUser } from "../FilterUser";
 import { Latest } from "../Latest";
 
 export const FilterSearchPage = () => {
-  const { filterData, filterPage } = useSelector(({ Reducer }) => Reducer);
+  const { filterData, filterPage, filterResultCount } = useSelector(({ Reducer }) => Reducer);
   const {filterAllData, setFilterAllData} = useContext(Context)
   const dispatch = useDispatch();
   const { value } = useParams();
   const navigate = useNavigate()
+  const {back} = useBack(true)
   const handleGetSearchResult = useCallback(async () => {
     if (!filterData?.length) {
       try {
@@ -27,7 +28,7 @@ export const FilterSearchPage = () => {
             }
           })
           .catch((error) => {
-            navigate("/not-found")
+            navigate(`/not-found/${value}`)
             return error
           });
         if (request.status === 200) {
@@ -42,13 +43,11 @@ export const FilterSearchPage = () => {
       return false;
     }
   }, [value, filterData, filterPage]);
-  const handleResultCount = () => {
-    return filterAllData?.total_count?.toString().length === 4 ? filterAllData?.total_count?.toString()?.substring(0, 1).concat(".k"):  filterAllData?.total_count?.toString().length === 5 ? filterAllData?.total_count?.toString().substring(0,3).concat(".k"):  filterAllData?.total_count?.toString().length === 6 ? filterAllData?.total_count.toString().substring(0, 3).concat(".k") : filterAllData?.total_count?.toString().length === 9 ? filterAllData?.total_count?.toString().substring(0,3).concat(".m"): filterAllData.total_count
-  }
+
   useEffect(() => {
-    console.log(filterAllData)
     handleGetSearchResult();
   }, [handleGetSearchResult]);
+  back()
   return (
     <section className="filterPage">
         {filterData?.length ? (
@@ -61,7 +60,7 @@ export const FilterSearchPage = () => {
                 <NavLink className={({isActive}) => isActive ? "link active__link": "link"} to={`/filter/${value}/settings-by-filter`}>
                   <CiSettings />
                   Settings by filter
-                <span className="result__count">{handleResultCount()}</span>
+                <span className="result__count">{filterAllData?.total_count}</span>
                 </NavLink>
               </li>
               <li className="filter_bar__item">
@@ -78,7 +77,7 @@ export const FilterSearchPage = () => {
               <div className="container__fluid">
               <Routes>
                 <Route index element={<FilterSettings/>}/>
-                <Route path={`settings-by-filter`} element={<FilterSettings count={handleResultCount()}/>}/>
+                <Route path={`settings-by-filter`} element={<FilterSettings />}/>
                 <Route path={`users`} element={<FilterUser/>}/>
               </Routes>
               </div>

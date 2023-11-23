@@ -3,8 +3,9 @@ import { Button, Context, setFilter } from "../../Settings";
 import { RenderUsers } from "../RenderUser";
 import { useContext, useEffect } from "react";
 
-export const FilterSettings = ({ count }) => {
+export const FilterSettings = ({ }) => {
   const {filterData} = useSelector(({Reducer}) => Reducer)
+  const {filterAllData} = useContext(Context);
   const dispatch = useDispatch()
   const handleFilter = (event) => {
     let parent = event.target.parentNode.parentNode.parentNode.parentNode;
@@ -22,12 +23,13 @@ export const FilterSettings = ({ count }) => {
   useEffect(() => {
     console.log(filterData)
   },[filterData])
+
   return (
     <div className="filter__settings">
       <div className="container__fluid">
         <div className="filter_settings__infos">
           <h2>
-            {count} {"(252 ms)"}{" "}
+           Result = {filterAllData?.total_count}  {"(252 ms)"}{" "}
           </h2>
           <div className="filter_settings__sort">
             <Button>

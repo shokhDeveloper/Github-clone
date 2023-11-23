@@ -1,16 +1,17 @@
-import { Route, Routes } from "react-router";
+import { Navigate, Route, Routes } from "react-router";
 import {
   Context,
   GlobalStyle,
   setFollowingRandom,
   setFollowingRepos,
+  setMyFollowings,
   setProfileData,
 } from "./Settings";
-import { ErrorPage, FilterSearchPage, Header, Loader, ProfileBar, SearchBox } from "./Components";
+import { ErrorPage, FilterSearchPage, Header, Loader, ProfileBar, SearchBox, NotFound } from "./Components";
 import { useCallback, useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { Dashboard, HomeBar } from "./Private";
+import { Dashboard, HomeBar, UserPage } from "./Private";
 function App() {
   const { profileData, searchbox, loader, profileBar, followinRandom } = useSelector(
     ({ Reducer }) => Reducer
@@ -65,7 +66,8 @@ function App() {
             response?.data?.map((item) => {
               result = [...result, item.login];
             });
-            dispatch(setFollowingRandom(result));
+            dispatch(setFollowingRandom(result)); 
+            dispatch(setMyFollowings(response?.data))
           }
         }
       })
@@ -96,11 +98,7 @@ function App() {
   useEffect(() => {
     handleGetRepo();
   }, [handleGetRepo]);
-  useEffect(() => {
-    axios.get("https://api.github.com/users/matheuscainelli42").then(response => {
-      console.log(response.data)
-    })
-  },[])
+  
   return (
     <>
       {loader ? (
@@ -111,10 +109,11 @@ function App() {
           {homeBar? (
             <HomeBar/>
           ): null}
-          <Routes>
+          <Routes>    
             <Route path="/*" element={<Dashboard />} />
             <Route path="/filter/:value/*" element={<FilterSearchPage/>} /> 
-            <Route path="/not-found" element={<ErrorPage/>}/>
+            <Route path="/not-found/:value" element={<ErrorPage/>}/>
+            <Route path="/user/:value/*" element={<UserPage/>}/>
           </Routes>
           {searchbox ? <SearchBox /> : null}
             <ProfileBar profileBar={profileBar}/>

@@ -62,7 +62,7 @@ export const Home = () => {
                       </div>
                       <div>
                         <div className="text-box">
-                          <Link to={`/user/${item.owner.id}`}>{item.owner.login}</Link>
+                          <Link to={`/user/${item.owner.login}`}>{item.owner.login}</Link>
                           <TextSettings styledType={true}>
                             Followed
                           </TextSettings>

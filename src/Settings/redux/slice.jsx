@@ -13,7 +13,10 @@ const initialState = {
   profileBar: false,
   filterData: [],
   maxFilterPage: 0,
-  filterPage: 1
+  filterPage: 1,
+  userData: [],
+  userValue: getItem("userValue") ? getItem("userValue"): null,
+  myFollowings: []
 };
 export const slice = createSlice({
   name: "git-hub-clone",
@@ -124,6 +127,16 @@ export const slice = createSlice({
         })
         state.filterData = sort
       }
+    },
+    setUserData(state, action){
+      state.userData = action.payload
+    },
+    setUserValue(state, action){
+      state.userValue = action.payload
+      setItem("userValue", state.userValue)
+    },
+    setMyFollowings(state, action){
+      state.myFollowings = action.payload
     }
   },
 });
@@ -145,5 +158,9 @@ export const {
   setMaxFilterPage,
   setPageInc,
   setPageDec,
-  setFilter
+  setFilter,
+  setFilterResultCount,
+  setUserData,
+  setUserValue,
+  setMyFollowings
 } = slice.actions;

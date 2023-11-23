@@ -14,7 +14,6 @@ import {
   setPageInc,
 } from "../../Settings";
 import { StarBtn } from "../StarBtn";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 export const RenderUsers = ({ users }) => {
   const { filterPage, maxFilterPage } = useSelector(({ Reducer }) => Reducer);
@@ -64,7 +63,7 @@ export const RenderUsers = ({ users }) => {
         ? (function () {
             return dataUsers?.map((item) => {
               return (
-                <div className="filter__user">
+                <div className="filter__user" key={item.id}>
                   <div className="filter_user__top">
                     <div className="filter_user__data">
                       <Avatar width={30} height={30} src={item.avatar_url} />

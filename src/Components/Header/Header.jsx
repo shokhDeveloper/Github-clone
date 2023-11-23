@@ -2,14 +2,25 @@ import { useDispatch, useSelector } from "react-redux";
 import "./header.scss";
 import { IoIosSearch } from "react-icons/io";
 import { Button, Context, Link, ProfileBtn, setProfileBar, setSearchBox } from "../../Settings";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { useLocation } from "react-router";
+import { NavLink } from "react-router-dom";
+import { UserLinks } from "../UserLinks";
 export const Header = () => {
   const { profileData } = useSelector(({ Reducer }) => Reducer);
-  const {setHomeBar} = useContext(Context);
+  const {setHomeBar, headerUserLinks, setHeaderUserLinks} = useContext(Context);
+  const {pathname} = useLocation()
   const dispatch = useDispatch()  
   const handleFocus = () => {
       dispatch(setSearchBox(true))
   }
+  useEffect(() => {
+    if(pathname.substring(0,5) === "/user"){
+      setHeaderUserLinks(true)
+    }else{
+      setHeaderUserLinks(false)
+    }
+  },[pathname])
   return (
     <header className="site__header header">
       <div className="container">
@@ -139,6 +150,9 @@ export const Header = () => {
           </div>
         </div>
       </div>
+      {headerUserLinks  ? (
+        <UserLinks/>
+      ): null}
     </header>
   );
 };

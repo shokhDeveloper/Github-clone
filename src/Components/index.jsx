@@ -9,3 +9,5 @@ export * from "./Latest";
 export * from "./ProfileBar";
 export * from "./FilterSearchPage";
 export * from "./ErrorPage";
+export * from "./NotFound";
+export * from "./UserLinks";

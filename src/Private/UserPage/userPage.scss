@@ -1,0 +1,208 @@
+.user__page{
+    width: 100%;
+}
+.user_page__inner{
+    display: grid;
+}
+.user_links__list{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 0.5rem;
+}
+.user_links__list li{
+    position: relative;
+}
+.user_links__list li:not(:first-child){
+    margin: 0rem 1rem;
+}
+.user_links__list li .user__link{
+    color: #fff;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-weight: 400;
+    position: relative;
+}
+.user_links__list li:nth-child(2) .user__link{
+    padding:0.5rem 2.3rem;
+    padding-left: 0.3rem;
+}
+.user_links__list li .user__link:hover{
+    background: #6e76813d;
+}
+.user_links__list li svg{
+    margin-right: 0.3rem;
+    font-weight: 400 !important;
+    color: #abb4c094;
+}
+.active_user__link{
+    font-weight: 500 !important; 
+}
+.active_user__link::after{
+    content: " ";
+    position: absolute;
+    bottom: -0.5rem;
+    width: 100%;
+    height: 2px;
+    background: #fd8c73;
+    border-radius: 5px;
+    left: 0;
+}
+.repos__count{
+    padding: 0.2rem;
+    background: #6e76813d;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    position: absolute;
+    right: 0rem;
+}
+.user__page{
+    background: #12171c;
+    min-height: 84vh;
+}
+.user_page__inner{
+    display: grid;
+    grid-template: repeat(1, auto) / 21% 60%;
+    justify-content: center;
+    grid-column-gap: 20px;
+}
+.user_page__inner .user_page__data{
+    margin-top: 2rem;
+}
+.user_page__inner .user_page__result{
+    margin-top: 1rem;
+}
+.user_page__image_box{
+    text-align: center;
+}
+.user_page__info{
+    padding: 1rem 0rem;
+}
+.user_page__info *{
+    margin: 0;
+    padding: 0;
+}
+.user_page__info h3:nth-child(1){
+    font-size: 27px;
+    font-weight: 700;   
+}
+.user_page__info h3:nth-child(2){
+    color: #6e7781be;
+    font-weight: 400;
+    font-size: 20px;
+}
+.user_page__data button, .user_overview__bottom button {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    background: #20242a;
+    color: #ffffff8d;
+}
+.user_page__data button:hover, .user_overview__bottom button:hover {
+    border: 1px solid #f9f9f98f;
+    background: #282d34;
+}
+.user_page__bio{
+    margin: 0;
+    padding: 0;
+    padding: 1rem 0rem;
+    font-size: 17px;
+}
+.user_page__follow_box{
+    display: flex;
+    align-items: center;
+}
+.user_page__follow_box a{
+    margin-right: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+.user_page__follow_box a svg{
+    margin-right: 0.3rem;
+}
+.user_page__blog{
+    padding-top: 0.5rem;
+}
+.user__overview{
+    width: 100%;
+}
+.user__overview .overview__title_box p{
+    font-size: 17px;
+    font-weight: 400;
+    color: #fff;
+}
+.overview__inner{
+    display: grid;
+    grid-template: repeat(2, auto) / repeat(2, 1fr);
+    grid-gap: 10px;
+    margin: 0;
+    padding: 0;
+    justify-content: space-between;
+    list-style: none;
+}
+.overview__repo{
+    border: 1px solid #6e76813d;
+    border-radius: 10px;
+    background: #13151b;
+    padding: 1rem;
+}
+.overview__repo .overview_repo__top{
+    display: flex;
+    align-items: center;
+}
+.overview_repo__top a{
+    margin: 0 0.5rem;
+    margin-left: 0.3rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.overview_repo__top a svg{
+    color: #6e7781   
+}
+.overview_repo__language_box{
+    display: flex;
+    align-items: stretch;
+}
+.overview_repo__language{
+    display: flex;
+    align-items: center;
+}
+.overview_repo__language::before{
+    content: " ";
+    padding: 0.5rem;
+    height: 14px;
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+.overview_repo__language_box .TypeScript::before{
+ background: rgb(46, 100, 153);   
+}
+.overview_repo__language_box .JavaScript::before{
+    background: yellow;   
+}
+.overview_repo__language_box .SCSS::before{
+    background: deeppink;
+}
+.overview_repo__language_box .C::before{
+    background: rgb(46, 100, 153);
+
+}
+.overview_repo__language_box .HTML::before{
+    background: chocolate;   
+}
+.user_overview__bottom small{
+    padding: 1rem 0rem;
+    display: inline-block;
+}

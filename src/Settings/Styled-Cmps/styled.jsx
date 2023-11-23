@@ -178,3 +178,10 @@ export const LinkActive = styled(NavLink)`
         text-decoration: underline;
     }
 `
+export const Repostype = styled.div`
+    background: #08090b;
+    color: #6e7781;
+    padding: 0.3rem;
+    border-radius: 20px;
+    display: inline-block;
+`

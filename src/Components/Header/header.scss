@@ -1,5 +1,7 @@
 @use "../../Settings/scss/functions.scss";
 .site__header{
+    z-index: 1;
+    background: #08090b;
     border-bottom: 1px solid #6e77815e;
 }
 .header__inner{
