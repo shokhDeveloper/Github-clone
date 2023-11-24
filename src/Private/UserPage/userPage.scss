@@ -100,7 +100,7 @@
     font-weight: 400;
     font-size: 20px;
 }
-.user_page__data button, .user_overview__bottom button {
+.user_page__data button, .user_overview__bottom button, .user_repo__btn {
     width: 100%;
     padding: 0.5rem 1rem;
     border-radius: 10px;
@@ -109,7 +109,7 @@
     background: #20242a;
     color: #ffffff8d;
 }
-.user_page__data button:hover, .user_overview__bottom button:hover {
+.user_page__data button:hover, .user_overview__bottom button:hover, .user_repo__btn:hover {
     border: 1px solid #f9f9f98f;
     background: #282d34;
 }
@@ -174,11 +174,11 @@
     display: flex;
     align-items: stretch;
 }
-.overview_repo__language{
+.repo__language{
     display: flex;
     align-items: center;
 }
-.overview_repo__language::before{
+.repo__language::before{
     content: " ";
     padding: 0.5rem;
     height: 14px;
@@ -186,23 +186,233 @@
     border-radius: 50%;
     margin-right: 0.5rem;
 }
-.overview_repo__language_box .TypeScript::before{
+.TypeScript::before, .CSS::before{
  background: rgb(46, 100, 153);   
 }
-.overview_repo__language_box .JavaScript::before{
-    background: yellow;   
+.JavaScript::before{
+    background: rgb(171, 171, 65);   
 }
-.overview_repo__language_box .SCSS::before{
+.SCSS::before{
     background: deeppink;
 }
-.overview_repo__language_box .C::before{
+.C::before{
     background: rgb(46, 100, 153);
 
 }
-.overview_repo__language_box .HTML::before{
+.HTML::before{
     background: chocolate;   
 }
 .user_overview__bottom small{
     padding: 1rem 0rem;
     display: inline-block;
+}
+.user__repositories{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.user__page div{
+    margin: 0;
+    padding: 0;
+}
+.user_repo__search{
+    width: 100% !important;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+}
+.user_repo__search input{
+    flex-grow: 1;
+}
+
+.user_repo__btn{
+    width: auto;
+    border: 1px solid #6e76813d;
+    padding: 0.5rem;
+    color: #fff;
+    display: flex;
+    align-items: center;
+}
+.user_repo__btn svg{
+    margin: 0;
+    padding: 0;
+}
+.user_repo__btn:nth-child(1){
+    margin-right: 1rem;
+}
+.user_repo__btn summary{
+    list-style: none;
+}
+.search__btns{
+    width: 30%;
+    display: flex;
+    align-items: center;
+    margin-left: 2rem;
+}
+.search__btns .user_repo__btn:nth-child(1){
+    margin-left: 1rem ;
+}
+.user_repo__filter{
+    position: absolute;
+    background: #21262d;
+    left: 47%;
+    top: 3rem;
+    width: 300px;
+    border-radius: 3px;
+    border: 1px solid #6e76813d;
+}
+.user_repo__filter .user_repo_filter__top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.3rem;
+    border-bottom: 1px solid #6e76813d;
+}
+.user_filter_x{
+    background: transparent;
+    color: #fff;
+    font-size: 20px;
+}
+.user_repo_filter__labels{
+    width: 100%;
+    position: relative;
+}
+.user_repo_filter__labels label{
+    display: inline-block;
+    width: 100%;
+    padding: 0.5rem;
+    border-bottom: 1px solid #6e76813d;
+}
+.user_repo_filter__labels *{
+    margin: 0;
+    padding: 0;
+}
+.user_repo_filter__labels label:hover{
+    background: #6e76813d;
+}
+.filter_language .user_repo__filter:last-child{
+    left: 60%;
+}
+.user_repo__inner{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+.user_repo__search{
+    padding-bottom: 1rem !important;
+    border-bottom: 1px solid #6e76813d;
+}
+.user_repo__inner .user__repo{
+    border: 1px solid #6e76813d;
+    padding: 0.5rem;
+    border-radius: 10px;
+}
+.user_repo__inner .user__repo{
+    margin: 1rem 0rem ;
+}
+.user_repo__top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.user_repo__top a{
+    font-size: 20px;
+    font-weight: 600;
+}
+.user__repo .user_repo__bottom{
+    display: flex;
+    align-items: center;
+    padding-top: 1rem;
+}
+.user_repo__top div > div{
+    margin-left: 1rem;
+    padding: 0.3rem;
+}
+.user_page__pagination{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.user_page__pagination button{
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+}
+.user_page__projects{
+    width: 100%;
+}
+.user_page_projects__inner{
+    display: grid;
+    grid-template: repeat(1, auto) / repeat(1, 1fr);
+    grid-row-gap: 30px;
+}
+.user_page_projects__inner .user_page__dashboard{
+    border: 1px solid #6e76813d;
+    background-image: url("https://github.githubassets.com/images/modules/memexes/projects-beta-banner-dark.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 1rem;
+    border-radius: 10px;
+}
+.user_page__dashboard *{
+    margin: 0;
+    padding: 0;
+}
+.user_page_dashboard__info{
+    width: 50%;
+}
+.user_page__dashboard h4{
+    padding: 0.5rem 0rem;
+    font-size: 25px;
+    padding-bottom: 0;
+}
+.user_page__dashboard p{
+    padding: 0.5rem 0rem;
+}
+.user_page_dashboard__info  button{
+    background: #20242a;
+    border: 1px solid #6e76813d;
+    color: #ffffffa2;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+}
+.user_page__create_project{
+    text-align: center;
+    background:#13151b;
+    padding: 1rem !important;
+    border: 1px solid #6e76813d;
+    border-radius: 10px;
+}
+.user_star__top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.user_star__top h4{
+    font-size: 25px;
+    font-weight: 200;
+}
+.user_star__top div{
+    display: flex;
+    align-items: center;
+}
+.user_star__box {
+    border: 1px solid #6e76813d;
+    padding: 1rem !important;
+    border-radius: 10px;
+    background: #13151b;
+    text-align: center;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.user_star__box h3{
+    font-size: 25px;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    padding-top: 1rem;
 }

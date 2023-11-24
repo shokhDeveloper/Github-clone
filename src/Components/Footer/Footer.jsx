@@ -1,9 +1,10 @@
 import "./footer.scss";
 import { DefaultLink, Link, LinkActive } from "../../Settings";
 
-export const Footer = () => {
+export const Footer = ({active}) => {
   return (
     <footer className="site__footer">
+      
       <div className="container__fluid">
         <div className="site_footer__inner">
           <div className="site_footer__item">

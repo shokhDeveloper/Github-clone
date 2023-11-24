@@ -15,7 +15,7 @@ export const Overview = ({user}) => {
                 }
             }catch(error){
                 return error
-            }
+            }   
         }
     },[user, overRepos])
     useEffect(() => {
@@ -41,7 +41,7 @@ export const Overview = ({user}) => {
                             </div>
                             <div className="overview_repo__bottom">
                                 <div className="overview_repo__language_box">
-                                    <p className={`overview_repo__language ${item.language}`}>{item.language}</p>
+                                    <p className={`repo__langauge ${item.language}`}>{item.language}</p>
                                 </div>
                                 <StarBtn active={true} repo={item} />
                             </div>

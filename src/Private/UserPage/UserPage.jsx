@@ -1,23 +1,27 @@
 import "./userPage.scss";
 import axios from "axios";
-import { useCallback,  useEffect } from "react";
+import { useCallback,  useContext,  useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes, useParams } from "react-router";
 import {
   Avatar,
   Button,
+  Context,
   LinkActive,
   LoadTitle,
   LoadingBox,
   setUserData,
+  setUserMaxPage,
   setUserValue,
   useBack,
 } from "../../Settings";
 import { PiUsers } from "react-icons/pi";
 import { Overview, Projects, Repositories, Star, Stars } from "./Pages";
+import { Footer } from "../../Components";
 
 export const UserPage = () => {
-  const { userData, myFollowings } = useSelector(({ Reducer }) => Reducer);
+  const { userData, myFollowings, userPage, userMaxPage } = useSelector(({ Reducer }) => Reducer);
+  const {userPageDisabled, setUserPageDisabled} = useContext(Context)
   const { back } = useBack(true);
   const dispatch = useDispatch();
   const { value } = useParams();
@@ -29,21 +33,39 @@ export const UserPage = () => {
         if (request.status === 200) {
           const response = await request.data;
           dispatch(setUserData([response]));
+          dispatch(setUserMaxPage(response.public_repos))
         }
       } catch (error) {
         return error;
       }
     
   }, [value]);
+  const handleClick = (event) => {
+    if(!event.target.matches(".sort_details") && !event.target.matches(".filter_language")){
+      const details = event.target.querySelectorAll("details")
+      if(details?.length){
+        details?.forEach(item => {
+          item.open = false
+        })
+      }
+    }
+  }
   useEffect(() => {
     handleGetUser();
   }, [handleGetUser]);
   useEffect(() => {
     dispatch(setUserValue(value));
   }, [value]);
+  useEffect(() => {
+    if(userPage === userMaxPage){
+      setUserPageDisabled("next")
+    }else if(userPage == 1){
+      setUserPageDisabled("prev")
+    }
+  },[userPage])
   back();
   return (
-    <div className="user__page">
+    <div className="user__page" onClick={handleClick}>
       <div className="container">
         {userData?.length ? (
           <div className="user_page__inner">
@@ -83,7 +105,7 @@ export const UserPage = () => {
                 <Route path="/overview" element={<Overview user={value}/>} />
                 <Route
                   path="/repositories"
-                  element={<Repositories/>}
+                  element={<Repositories user={value}/>}
                 />
                 <Route path="/projects" element={<Projects/>} />
                 <Route path="/star" element={<Stars/>} />
@@ -95,6 +117,9 @@ export const UserPage = () => {
             <LoadTitle>Yuklanmoqda ...</LoadTitle>
           </LoadingBox>
         )}
+        <div className="fluid">
+      <Footer active={true}/>
+        </div>
       </div>
     </div>
   );

@@ -54,7 +54,7 @@ export const SearchBox = () => {
       style={{ display: searchbox ? "flex" : "none" }}
     >
       <div className="searchbox__inner">
-          <Input autoComplete="off" onKeyUp={handleKey} autoFocus={true} className="searchbox__input" placeholder="Search user" />
+          <Input autoComplete="off" onKeyUp={handleKey}  autoFocus={true} className="searchbox__input" placeholder="Search user" />
         {searchData?.length ? (
           <ul className="searchbox__inner_list">
             {searchData?.map((item) => {

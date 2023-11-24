@@ -16,7 +16,9 @@ const initialState = {
   filterPage: 1,
   userData: [],
   userValue: getItem("userValue") ? getItem("userValue"): null,
-  myFollowings: []
+  myFollowings: [],
+  userMaxPage: 0,
+  userPage: 1
 };
 export const slice = createSlice({
   name: "git-hub-clone",
@@ -137,6 +139,31 @@ export const slice = createSlice({
     },
     setMyFollowings(state, action){
       state.myFollowings = action.payload
+    },
+    setUserMaxPage(state, action){
+      let maxPage = Math.ceil(action.payload / 30)
+      if(maxPage > 1){
+        state.userMaxPage = maxPage
+      }else{
+        state.userMaxPage = 1
+      }
+    },
+    setUserPage(state, action){
+      state.userPage = action.payload
+    },
+    setUserPageInc(state, action){
+      if(state.userMaxPage > state.userPage){
+        state.userPage += action.payload
+      }else{
+        state.userPage = state.userPage
+      }
+    },
+    setUserPageDec(state, action){
+      if(state.userPage > 1){
+        state.userPage -= action.payload
+      }else{
+        state.userPage = state.userPage
+      }
     }
   },
 });
@@ -162,5 +189,9 @@ export const {
   setFilterResultCount,
   setUserData,
   setUserValue,
-  setMyFollowings
+  setMyFollowings,
+  setUserMaxPage,
+  setUserPage,
+  setUserPageInc,
+  setUserPageDec
 } = slice.actions;

@@ -46,9 +46,11 @@ export const RenderUsers = ({ users }) => {
     console.log(maxFilterPage);
     if(filterPage === maxFilterPage){
       setDisabled("next")
-    }else if(filterPage === 1){
+    }else if(filterPage > 1){
+      setDisabled("")
+    }
+    else if(filterPage === 1){
       setDisabled("prev")
-    
     }
   }, [maxFilterPage, filterPage, filterAllData]);
   useEffect(() => {

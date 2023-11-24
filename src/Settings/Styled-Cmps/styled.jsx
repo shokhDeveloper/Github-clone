@@ -64,6 +64,10 @@ export const GlobalStyle = createGlobalStyle`
   overflow: hidden;
 }
     
+.fluid{
+    width: 90%  !important;
+    margin: 0 auto !important;
+}
     /* #24292f */
     /* #32383f */
     /* #0d1117 */
@@ -106,7 +110,7 @@ export const ProfileBtn = styled.button.attrs({
 `
 export const Input = styled.input`
     padding: 0.5rem 1rem;
-    background: #08090b;
+    background: ${({styledType}) => styledType ? "#13151b" : "#08090b" };
     color: #6e7781;
     border: 1px solid #6e77815e;
     outline: 2px solid transparent;
@@ -181,7 +185,15 @@ export const LinkActive = styled(NavLink)`
 export const Repostype = styled.div`
     background: #08090b;
     color: #6e7781;
-    padding: 0.3rem;
+    padding: 0.3rem !important;
     border-radius: 20px;
     display: inline-block;
+`
+export const BtnGreen = styled.button`
+     padding: 0.5rem  ;
+    background: #1a7f37;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 1px;
 `
